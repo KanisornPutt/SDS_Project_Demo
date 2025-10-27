@@ -15,7 +15,7 @@ for frontend and html service
 ```bash
 python3 -m venv venv
 source venv/bin/activate
-``
+```
 
 **Terminal 1 - Frontend:**
 ```bash
