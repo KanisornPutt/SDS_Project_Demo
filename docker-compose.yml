@@ -2,11 +2,13 @@ version: '3.8'
 
 services:
   frontend:
-    image: nginx:alpine
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     ports:
-      - "80:80"
-    volumes:
-      - ./frontend:/usr/share/nginx/html:ro
+      - "80:80" 
+    depends_on:
+      - gateway
     
   gateway:
     build:
@@ -15,7 +17,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - IPYNB_SERVICE=http://ipynb-converter:5000
+      - IPYNB_SERVICE=http://ipynb-converter:5001
       - PDF_SERVICE=http://pdf-converter:8080
     depends_on:
       - ipynb-converter
@@ -26,8 +28,8 @@ services:
       context: ./ipynb-html
       dockerfile: Dockerfile
     ports:
-      - "5000:5000"
-    
+      - "5001:5001"
+
   pdf-converter:
     build:
       context: ./html-pdf

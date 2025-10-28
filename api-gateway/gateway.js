@@ -9,7 +9,7 @@ const upload = multer({ storage: multer.memoryStorage() });
 
 app.use(cors());
 
-const IPYNB_SERVICE = process.env.IPYNB_SERVICE || "http://localhost:5000";
+const IPYNB_SERVICE = process.env.IPYNB_SERVICE || "http://localhost:5001";
 const PDF_SERVICE = process.env.PDF_SERVICE || "http://localhost:8080";
 
 app.post("/convert", upload.single("file"), async (req, res) => {
